@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .green {
+            color: green;
+        }
+        .red {
+            color: red;
+        }
+        img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Sold</th>
+                <th>Is Sale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.title }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.category }}</td>
+                <td><img src="{{ product.image }}" alt="Product Image"></td>
+                <td>{{ product.sold|yesno:"Yes,No" }}</td>
+                <td class="{{ product.is_sale|yesno:'green,red' }}">{{ product.is_sale|yesno:"On Sale,Not on Sale" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
